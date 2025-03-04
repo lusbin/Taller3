@@ -1,27 +1,27 @@
-name: Mi Workflow Básico  # Nombre del workflow
+name: CI  # Nombre del workflow
 
-on: 
-  push:  # Se ejecuta cuando se hace un push a cualquier rama
-  pull_request:  # Se ejecuta en cada pull request
+on:
+  push:  # Se ejecuta en cada push
+  pull_request:  # Se ejecuta en cada PR
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Sistema donde se ejecutará el workflow
+  test:
+    runs-on: ubuntu-latest  # Se ejecuta en Linux
 
     steps:
-      - name: Clonar el repositorio
-        uses: actions/checkout@v4  # Descarga el código del repo
+      - name: Clonar repositorio
+        uses: actions/checkout@v4  # Descarga el código
 
-      - name: Configurar Node.js
+      - name: Instalar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'  # Instala Node.js 18
+          node-version: '18'
 
       - name: Instalar dependencias
-        run: npm install  # Instala dependencias si hay un package.json
+        run: npm install  # Cambia esto según tu proyecto
 
       - name: Ejecutar pruebas
-        run: npm test  # Corre los tests si existen
+        run: npm test  # Cambia esto según tu framework de pruebas
 
       - name: Mensaje final
-        run: echo "Workflow ejecutado correctamente 🎉"
+        run: echo "✅ Pruebas completadas correctamente"
